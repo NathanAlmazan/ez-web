@@ -61,6 +61,7 @@ function App() {
       >
         <Grid item xs={12} md={8}>
           <CodeEditor 
+            program={program}
             handleProgramChange={handleTextChange}
             handleAnalyzeCode={handleAnalyzeCode}
           />

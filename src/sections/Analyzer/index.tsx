@@ -5,8 +5,12 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 // components
 import LexemesTable from './LexemesTable';
+// icons
+import DownloadIcon from '@mui/icons-material/Download';
 // types
 import { Lexemes } from '../../App';
 
@@ -61,8 +65,32 @@ export default function CodeAnalyzer({ lexemes, error }: { lexemes: Lexemes[], e
     setValue(newValue);
   };
 
+  const handleDownloadLexemes = () => {
+    const fileData = lexemes.map(lexeme => `${lexeme.token} -> "${lexeme.value}"`).join("\n");
+    const blob = new Blob([fileData], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = "output.txt";
+    link.href = url;
+    link.click();
+  }
+
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', position: 'relative' }}>
+      <Tooltip title="Download Tokens">
+        <IconButton 
+          onClick={handleDownloadLexemes}
+          color='secondary'
+          sx={{
+            position: 'absolute',
+            top: 3,
+            right: 8,
+            zIndex: 10
+          }}
+        >
+          <DownloadIcon fontSize='large' />
+        </IconButton>
+      </Tooltip>
       <Box sx={{ bgcolor: (theme) => theme.palette.primary.main }}>
         <StyledTabs
           value={value}
@@ -70,7 +98,7 @@ export default function CodeAnalyzer({ lexemes, error }: { lexemes: Lexemes[], e
           aria-label="styled tabs example"
         >
           <StyledTab label="Lexemes" />
-          <StyledTab label="Abstract Syntax Tree" />
+          <StyledTab label="Syntax Tree" />
         </StyledTabs>
         <Box sx={{ height: "75vh", p: 3, overflowY: 'auto' }}>
             <LexemesTable lexemes={lexemes} />
