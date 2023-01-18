@@ -38,7 +38,7 @@ export default function CodeEditor(props: CodeEditorProps) {
     const handleBeforeMount = (monaco: Monaco) => {
         if (!monaco.languages.getLanguages().some(({ id }) => id === 'ezlanguage')) {
             monaco.languages.register({ id: 'ezlanguage' });
-            monaco.languages.setMonarchTokensProvider('ezlanguage', EzLanguageTokens() as any)
+            monaco.languages.setMonarchTokensProvider('ezlanguage', EzLanguageTokens() as any);
         } else {
             console.log("Language already exists");
         }

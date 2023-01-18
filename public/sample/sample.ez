@@ -1,0 +1,65 @@
+<< sample code >>
+
+model Student {
+    firstName: wrd.
+    lastName: wrd.
+    age: int.
+}
+
+task sortByAge(students: [Student]):
+    if students->len > 1,
+        students->len / 2 to mid. << find mid >>
+        students->slice(0, mid) to left.
+        students-> slice(mid, students->len) to right.
+        
+        sortByAge(students).
+        sortByAge(students).
+
+        0 to i, j, k.
+
+        << 
+            copy data to 
+            temporary arrays
+        >>
+        while i < left->len and j < right->len:
+            if left[i]->age <= right[j]->age,
+                left[i] to students[k].
+                i++.
+            else,
+                right[j] to students[k].
+                j++.
+            k++.
+
+        << 
+            checking if any 
+            element was left 
+        >>
+        while i < left->len:
+            left[i] to students[k].
+            i++.
+            k++.
+
+        while j < right->len:
+            right[j] to students[k].
+            j++.
+            k++.
+
+task printAll(students: [Student])
+    foreach students in students:
+        print: student->firstName + " " + student->lastName.
+
+default task main():
+    Student { "John", 16 } to student1.
+    Student { "Karen", 14 } to student2.
+    Student { "Henry", 17 } to student3.
+
+    [student1, student2, student3] to studentArray.
+
+    studentArray
+        ->sortByAge()
+        ->printAll()
+
+
+
+        
+
