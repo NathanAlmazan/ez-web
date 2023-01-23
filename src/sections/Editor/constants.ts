@@ -4,7 +4,7 @@ export default function EzLanguageTokens() {
         keywords: [
             'to', 'from', 'as', 'if', 'else', 'in', 'is', 
             'print', 'count', 'foreach', 'while', 'do',
-            'put', 'out', 'task', 'on', 'off'
+            'put', 'out', 'task', 'on', 'off', 'not'
         ],
     
         typeKeywords: [

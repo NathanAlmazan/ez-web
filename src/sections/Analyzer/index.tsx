@@ -66,7 +66,8 @@ export default function CodeAnalyzer({ lexemes, error }: { lexemes: Lexemes[], e
   };
 
   const handleDownloadLexemes = () => {
-    const fileData = lexemes.map(lexeme => `${lexeme.token} ----> ${lexeme.value}`).join("\n");
+    let fileData = lexemes.map(lexeme => `${lexeme.token}${Array(35 - lexeme.token.length).fill(0).map(s => '').join(' ')} | ${lexeme.value}`).join("\n");
+    fileData = `Tokens${Array(29).fill(0).map(s => '').join(' ')} | Values \n` + fileData;
     const blob = new Blob([fileData], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");

@@ -11,11 +11,11 @@ export default function LexemesTable({ lexemes }: { lexemes: Lexemes[] }) {
       {lexemes.map((lexeme, index) => (
         <Card key={index} sx={{ bgcolor: (theme) => theme.palette.secondary.light }}>
           <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              {lexeme.token}
-            </Typography>
-            <Typography variant="h5" component="div">
+            <Typography variant="body1" fontWeight={700} component="div">
               {lexeme.value}
+            </Typography>
+            <Typography variant='subtitle2' color="text.secondary">
+              {lexeme.token}
             </Typography>
           </CardContent>
         </Card>
